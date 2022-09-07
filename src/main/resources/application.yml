@@ -1,0 +1,32 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: swen-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/swen
+    username: postgres
+    password: hzandi1989
+
+
+  jpa:
+    database-platform: org.hibernate.spatial.dialect.postgis.PostgisDialect
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+
+
+
+
+
+
+
+
