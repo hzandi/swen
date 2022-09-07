@@ -1,11 +1,13 @@
 package co.runak.swen.user;
 
+import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 
@@ -44,4 +46,7 @@ public class AppUser extends BaseEntity {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> commentList;
 }

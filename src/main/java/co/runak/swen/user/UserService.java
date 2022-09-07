@@ -2,8 +2,8 @@ package co.runak.swen.user;
 
 import co.runak.swen.common.SearchCriteria;
 import org.springframework.data.domain.Page;
+
 import java.util.List;
-import java.util.Optional;
 
 
 public interface UserService {

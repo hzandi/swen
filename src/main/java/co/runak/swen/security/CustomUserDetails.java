@@ -1,4 +1,4 @@
-package co.runak.swen.config.security;
+package co.runak.swen.security;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

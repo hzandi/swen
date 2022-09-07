@@ -1,11 +1,15 @@
 package co.runak.swen.place;
+
+import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseEntity;
 import lombok.Data;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 import org.hibernate.envers.Audited;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_place")
@@ -36,5 +40,8 @@ public class Place extends BaseEntity {
 
     @Column(name = "place_location")
     private Point<G2D> location;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place", cascade = CascadeType.ALL)
+    private List<Comment> commentList;
 
 }

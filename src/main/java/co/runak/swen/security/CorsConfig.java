@@ -1,4 +1,4 @@
-package co.runak.swen.config.security;
+package co.runak.swen.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

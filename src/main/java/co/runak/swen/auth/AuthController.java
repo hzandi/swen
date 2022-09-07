@@ -2,7 +2,6 @@ package co.runak.swen.auth;
 
 import co.runak.swen.common.exception.BadRequestException;
 import co.runak.swen.common.exception.ConflictException;
-import co.runak.swen.common.exception.NotFoundException;
 import co.runak.swen.user.AppUser;
 import co.runak.swen.user.Role;
 import co.runak.swen.user.UserService;
@@ -13,8 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @RequiredArgsConstructor

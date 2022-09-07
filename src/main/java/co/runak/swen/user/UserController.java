@@ -2,9 +2,7 @@ package co.runak.swen.user;
 
 import co.runak.swen.common.PagingData;
 import co.runak.swen.common.SearchCriteria;
-import co.runak.swen.config.security.CustomUserDetails;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import co.runak.swen.security.CustomUserDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -16,19 +14,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static co.runak.swen.config.SwaggerConfig.BASIC_AUTH_SECURITY_SCHEME;
-
 
 @RestController
-@RequestMapping(value = "/api/v1/users")
+@RequestMapping(value = "/users")
 @AllArgsConstructor
 public class UserController {
 
     private final UserService service;
     private AppUserMapper mapper;
 
-    @PreAuthorize("hasAnyRole('Role_ADMIN','Role_USER')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @GetMapping("/me")
     public ResponseEntity<AppUserDTO> getUser(@AuthenticationPrincipal CustomUserDetails currentUser) {
         AppUser appUser = service.getByUsername(currentUser.getUsername());
@@ -36,8 +31,7 @@ public class UserController {
         return ResponseEntity.ok(appUserDTO);
     }
 
-    @PreAuthorize("hasRole('Role_ADMIN')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<AppUserDTO> getUser(@PathVariable Long id) {
         AppUser appUser = service.getById(id);
@@ -45,8 +39,7 @@ public class UserController {
         return ResponseEntity.ok(appUserDTO);
     }
 
-    @PreAuthorize("hasAnyRole('Role_ADMIN','Role_USER')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @PostMapping("/")
     public ResponseEntity saveUser(@RequestBody AppUserDTO appUserDTO){
         AppUser appUser = mapper.toAppUser(appUserDTO);
@@ -54,8 +47,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PreAuthorize("hasAnyRole('Role_ADMIN','Role_USER')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @PutMapping("/")
     public ResponseEntity updateUser(@RequestBody AppUserDTO appUserDTO) {
         AppUser appUser = mapper.toAppUser(appUserDTO);
@@ -63,15 +55,14 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PreAuthorize("hasRole('Role_ADMIN')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/")
     public ResponseEntity<List<AppUserDTO>> getAll() {
         List<AppUserDTO> appUserDTOS = service.getAll().stream().map(mapper::toAppUserDTO)
@@ -79,8 +70,7 @@ public class UserController {
         return ResponseEntity.ok(appUserDTOS);
     }
 
-    @PreAuthorize("hasRole('Role_ADMIN')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/paging/{page}/{size}")
     public ResponseEntity<PagingData<AppUserDTO>> getAllPaging(@PathVariable Integer page, @PathVariable Integer size) {
 
@@ -88,8 +78,7 @@ public class UserController {
         return getPagingDataResponseEntity(page, appUserPage);
     }
 
-    @PreAuthorize("hasRole('Role_ADMIN')")
-    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/search")
     public ResponseEntity<List<AppUserDTO>> search(@RequestBody List<SearchCriteria> searchCriteria) {
         List<AppUser> appUserList = service.search(searchCriteria);
