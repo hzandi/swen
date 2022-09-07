@@ -1,5 +1,6 @@
 package co.runak.swen.like;
 
+import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseEntity;
 import co.runak.swen.place.Place;
 import co.runak.swen.user.AppUser;
@@ -14,10 +15,13 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Like extends BaseEntity {
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "place_id")
     private Place place;
+
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
     @NotNull
     @ManyToOne

@@ -3,6 +3,7 @@ package co.runak.swen.place;
 import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseEntity;
 import co.runak.swen.image.Image;
+import co.runak.swen.like.Like;
 import lombok.Data;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
@@ -44,6 +45,9 @@ public class Place extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "place", cascade = CascadeType.ALL)
     private List<Comment> commentList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place", cascade = CascadeType.ALL)
+    private List<Like> likeList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "place", cascade = CascadeType.ALL)
     private List<Image> images;

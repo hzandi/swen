@@ -1,5 +1,6 @@
 package co.runak.swen.like;
 
+import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseDTO;
 import co.runak.swen.place.Place;
 import co.runak.swen.user.AppUser;
@@ -11,6 +12,9 @@ public class LikeDTO extends BaseDTO {
 
     @ApiModelProperty(required = true, hidden = false)
     private Place place;
+
+    @ApiModelProperty(required = true, hidden = false)
+    private Comment comment;
 
     @ApiModelProperty(required = true, hidden = false)
     private AppUser user;

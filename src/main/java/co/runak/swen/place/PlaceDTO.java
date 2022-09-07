@@ -3,6 +3,7 @@ package co.runak.swen.place;
 
 import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseDTO;
+import co.runak.swen.like.Like;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -33,5 +34,8 @@ public class PlaceDTO extends BaseDTO {
 
     @ApiModelProperty(required = false, hidden = true)
     private List<Comment> commentList;
+
+    @ApiModelProperty(required = false, hidden = true)
+    private List<Like> likeList;
 
 }
