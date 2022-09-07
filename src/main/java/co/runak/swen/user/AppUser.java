@@ -3,6 +3,7 @@ package co.runak.swen.user;
 import co.runak.swen.comment.Comment;
 import co.runak.swen.common.BaseEntity;
 import co.runak.swen.image.Image;
+import co.runak.swen.like.Like;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
@@ -45,9 +46,13 @@ public class AppUser extends BaseEntity {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private Image image;
+    @Column(name = "profile_image")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Image profileImage;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> commentList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Like> likeList;
 }

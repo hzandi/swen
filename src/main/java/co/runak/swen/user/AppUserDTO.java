@@ -1,6 +1,8 @@
 package co.runak.swen.user;
 
 import co.runak.swen.comment.Comment;
+import co.runak.swen.image.Image;
+import co.runak.swen.like.Like;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -33,8 +35,11 @@ public class AppUserDTO {
     private String phone;
 
     @ApiModelProperty(required = true, hidden = false)
-    private String imageUrl;
+    private Image profileImage;
 
     @ApiModelProperty(required = false, hidden = true)
     private List<Comment> commentList;
+
+    @ApiModelProperty(required = false, hidden = true)
+    private List<Like> likeList;
 }

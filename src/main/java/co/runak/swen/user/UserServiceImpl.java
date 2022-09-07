@@ -42,7 +42,9 @@ public class UserServiceImpl implements UserService {
         lastSavedAppUser.setRoles(appUser.getRoles());
         lastSavedAppUser.setMobile(appUser.getMobile());
         lastSavedAppUser.setPhone(appUser.getPhone());
-        lastSavedAppUser.setImageUrl(appUser.getImageUrl());
+        lastSavedAppUser.setProfileImage(appUser.getProfileImage());
+        lastSavedAppUser.setCommentList(appUser.getCommentList());
+        lastSavedAppUser.setLikeList(appUser.getLikeList());
         return userRepository.save(lastSavedAppUser);
     }
 

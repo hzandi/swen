@@ -23,6 +23,18 @@ app:
     allowed-origins: http://localhost:3000
 
 
+minio:
+  bucket:
+    name: epm
+  default:
+    folder: "/"
+  access:
+    name: minioadmin
+    secret: minioadmin
+
+  url: http://127.0.0.1:9000
+
+
 
 
 
