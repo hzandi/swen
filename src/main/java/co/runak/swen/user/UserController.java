@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/users/")
 @AllArgsConstructor
 public class UserController {
 
